@@ -108,62 +108,6 @@ function addPagination(lists) {
    })
 }
 
-function searchBar(list){
-   const header = document.querySelector("header")
-   const searchbar = `
-   <label for="search" class="student-search">
-      <span>Search by name</span>
-      <input id="search" placeholder="Search by name...">
-      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
-   </label>
-   `;
-
-   header.insertAdjacentHTML('beforeend', searchbar);
-   const search = document.querySelector("input")
-
-   search.addEventListener("keyup", function(){
-       // capture input into search bar
-      var searchedInput = search.value
-      console.log(searchedInput)
-
-      //see if it matches any letters a name from data object
-      for(var i = 0; i < list.length; i++){
-         const first = list[i].name.first
-         const last = list[i].name.last
-         // console.log(first)
-         // console.log(last)
-
-         if(list[i].name.first.includes(searchedInput || list[i].name.last(searchedInput))){
-            console.log(first + " " + last)
-         }
-         
-         const searchedStudent = `
-         <li class="student-item cf">
-            <div class="student-details">
-               <img class="avatar" src="${list[i].picture.large}" alt="Profile Picture">
-               <h2>${list[i].name.title} ${first} ${last}</h3>
-               <span class="email"> ${list[i].email}</span>
-            </div>
-            <div class="joined-details">
-               <span class="date">Joined ${list[i].registered.date}</span>
-            </div>
-         </li>
-         `;
-
-            // get the elements with the class student-list
-         const studentLi = document.querySelector(".student-list");
-
-         //set the student list to an empty string
-         studentLi.innerHTML = " ";
-         studentLi.insertAdjacentHTML('beforeend', searchedStudent);
-      }
-    
-      //filter the students shown to only show those that are matches
-   });
-
-};
-
 // Call functions
 showPage(data,1);
 addPagination(data);
-searchBar(data)
